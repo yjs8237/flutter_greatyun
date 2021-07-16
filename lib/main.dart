@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -76,9 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Page1 extends StatelessWidget {
+
+  var imageItems = [
+    "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F201808%2FFPX%2F987711294.jpg&type=a340",
+    "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MDJfNTkg%2FMDAxNjIyNTk3NjgzMzE2.rmwE9v02hJuvd6S1-RG58UhitoDlhS32YWScCtkcvGMg.CP-Y562G88a9tzlVKgg33_n4Zn5IEF_-HLEhxgcK7aUg.JPEG.mode21c%2F1_%2528249%2529.jpg&type=a340",
+    "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumb2.gettyimageskorea.com%2Fimage_preview%2F700%2F201808%2FFPX%2F987711294.jpg&type=a340",
+    "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MDJfNTkg%2FMDAxNjIyNTk3NjgzMzE2.rmwE9v02hJuvd6S1-RG58UhitoDlhS32YWScCtkcvGMg.CP-Y562G88a9tzlVKgg33_n4Zn5IEF_-HLEhxgcK7aUg.JPEG.mode21c%2F1_%2528249%2529.jpg&type=a340",
+    "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MDJfNTkg%2FMDAxNjIyNTk3NjgzMzE2.rmwE9v02hJuvd6S1-RG58UhitoDlhS32YWScCtkcvGMg.CP-Y562G88a9tzlVKgg33_n4Zn5IEF_-HLEhxgcK7aUg.JPEG.mode21c%2F1_%2528249%2529.jpg&type=a340",
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         _buildTop(),
         _buildModdle(),
@@ -88,71 +98,40 @@ class Page1 extends StatelessWidget {
   }
 
   Widget _buildTop() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              children: [
-                Icon(
-                  Icons.local_taxi,
-                  size: 40,
-                ),
-                Text("Taxi")
-              ],
-            ),
-            Column(
-              children: [
-                Icon(
-                  Icons.local_taxi,
-                  size: 40,
-                ),
-                Text("Taxi")
-              ],
-            ),
-            Column(
-              children: [
-                Icon(
-                  Icons.local_taxi,
-                  size: 40,
-                ),
-                Text("Taxi")
-              ],
-            ),
-            Column(
-              children: [
-                Icon(
-                  Icons.local_taxi,
-                  size: 40,
-                ),
-                Text("Taxi")
-              ],
-            )
-          ],
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          child: Row(
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 10),
+      child: Column(
+        children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                children: [
-                  Icon(
-                    Icons.local_taxi,
-                    size: 40,
-                  ),
-                  Text("Taxi")
-                ],
+              GestureDetector(
+                onTap: () {
+                  print("클릭");
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.local_taxi,
+                      size: 40,
+                    ),
+                    Text("Taxi")
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.local_taxi,
-                    size: 40,
-                  ),
-                  Text("Taxi")
-                ],
+              GestureDetector(
+                onTap: () {
+                  print("2");
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.local_taxi,
+                      size: 40,
+                    ),
+                    Text("Taxi")
+                  ],
+                ),
               ),
               Column(
                 children: [
@@ -174,13 +153,79 @@ class Page1 extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ],
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.local_taxi,
+                      size: 40,
+                    ),
+                    Text("Taxi")
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.local_taxi,
+                      size: 40,
+                    ),
+                    Text("Taxi")
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.local_taxi,
+                      size: 40,
+                    ),
+                    Text("Taxi")
+                  ],
+                ),
+                Opacity(
+                  opacity: 0.0,
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.local_taxi,
+                        size: 40,
+                      ),
+                      Text("Taxi")
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildModdle() {
-    return Text('middle');
+    return CarouselSlider(
+      options: CarouselOptions(height: 400.0),
+      items: [0,1,2,3,4].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    imageItems[i],
+                    fit: BoxFit.cover,
+                  ),
+                )
+            );
+          },
+        );
+      }).toList(),
+    );
   }
 
   Widget _buildBottom() {
